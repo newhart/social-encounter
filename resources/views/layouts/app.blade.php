@@ -1,36 +1,50 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+    <!-- Fonts -->
+    <link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/feather.css') }}" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon.png') }}" />
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/emoji.css') }}" />
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+    <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}" />
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-    </body>
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+
+<body class="color-theme-blue mont-font">
+    <div class="preloader"></div>
+    <div class="main-wrapper">
+        {{-- navigation top  --}}
+        @include('layouts.navigation')
+        {{-- navigation top end  --}}
+        {{-- navigation left  --}}
+        @include('layouts.navigation-left')
+        {{-- end navigation left  --}}
+        {{-- main content  --}}
+        {{ $slot }}
+        {{-- end  main content  --}}
+        {{-- right chat --}}
+        @include('layouts.chat.right')
+        {{-- right chat --}}
+    </div>
+
+    <script src="{{ asset('js/plugin.js') }}"></script>
+
+    <script src="{{ asset('js/lightbox.js') }}"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
+</body>
+
 </html>
